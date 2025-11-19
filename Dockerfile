@@ -1,5 +1,6 @@
 # For linux/amd64 platform support
-FROM --platform=linux/amd64 python:3.11-slim
+ARG BUILDPLATFORM=linux/amd64
+FROM --platform=$BUILDPLATFORM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
