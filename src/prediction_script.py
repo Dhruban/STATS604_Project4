@@ -13,6 +13,10 @@ This script:
 import sys
 import os
 
+# Suppress all warnings and debug output
+warnings.filterwarnings('ignore')
+sys.stderr = open('/dev/null', 'w')
+
 # ======================================================================
 # # Weather Forecast Data Download (Nov 20-29, 2025)
 #
