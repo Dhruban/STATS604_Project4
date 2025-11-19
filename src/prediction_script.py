@@ -196,9 +196,15 @@ combined_df = combined_df[column_order]
 # ============================================================================
 # CONFIGURATION
 # ============================================================================
-# Directory paths (relative to src/)
-FIGURES_DIR = "../figures"
-OUTPUT_DIR = "../output"
+# Get absolute path to this script file
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Project root is one level up from src/
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
+
+# Directory paths - absolute paths work everywhere
+FIGURES_DIR = os.path.join(PROJECT_ROOT, "figures")
+OUTPUT_DIR = os.path.join(PROJECT_ROOT, "output")
 
 # Create directories if they don't exist
 os.makedirs(FIGURES_DIR, exist_ok=True)
