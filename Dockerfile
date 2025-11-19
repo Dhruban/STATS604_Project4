@@ -1,4 +1,3 @@
-# Use Python base image instead of jupyter/r-notebook since your project uses Python
 # For linux/amd64 platform support
 FROM --platform=linux/amd64 python:3.11-slim
 
