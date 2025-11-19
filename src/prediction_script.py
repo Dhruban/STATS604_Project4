@@ -12,6 +12,7 @@ This script:
 
 import sys
 import os
+import warnings
 
 # Suppress all warnings and debug output
 warnings.filterwarnings('ignore')
