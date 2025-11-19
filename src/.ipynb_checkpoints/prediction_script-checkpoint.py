@@ -156,8 +156,9 @@ for idx, row in zone_coords.iterrows():
         df['load_area'] = zone
         all_data.append(df)
     else:
+        pass  # or handle the error
     # Small delay between requests to be respectful to the API
-        time.sleep(0.5)
+    time.sleep(0.5)
 
 
 # ======================================================================
@@ -570,35 +571,37 @@ with open(model_path, 'rb') as f:
 # Dictionary to store peak days predictions
 peak_days_predictions = {}
 
-for region in regions:
+for region in tqdm(regions, desc="Predicting peak days"):
     # Get model info for this region
     model_info = peak_days_best_models[region]
     model = model_info['model']
     threshold = model_info['threshold']
-
+    
     # Prepare prediction data for this region
     pred_data = test_df[test_df['region'] == region].copy()
-
+    
     if len(pred_data) == 0:
         continue
+    
     # Get features (same columns used in training)
     X_pred = pred_data[feature_cols]
-
+    
     # Get prediction probabilities
     y_pred_proba = model.predict_proba(X_pred)[:, 1]
-
+    
     # Apply threshold to get binary predictions
     y_pred = (y_pred_proba >= threshold).astype(int)
-
+    
     # Add predictions to dataframe
     pred_data['peak_day_pred'] = y_pred
-
+    
     # Store predictions by date
     region_predictions = {}
     for idx, row in pred_data.iterrows():
         region_predictions[row['date']] = row['peak_day_pred']
-
+    
     peak_days_predictions[region] = region_predictions
+
 
 # Create DataFrame with regions as rows and dates as columns
 peak_days_df = pd.DataFrame(peak_days_predictions).T
