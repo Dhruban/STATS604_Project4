@@ -216,6 +216,9 @@ tomorrow_datetime = datetime.now() + timedelta(days=1)
 TEST_START = tomorrow_datetime.strftime('%Y-%m-%d') + ' 00:00:00'
 TEST_END = tomorrow_datetime.strftime('%Y-%m-%d') + ' 23:00:00'
 
+test_start = pd.to_datetime(TEST_START)
+test_end = pd.to_datetime(TEST_END)
+
 # Rolling window for peak days
 WINDOW_SIZE = 10  # days
 NUM_PEAK_DAYS = 2
