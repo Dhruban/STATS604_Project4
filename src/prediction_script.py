@@ -609,7 +609,7 @@ peak_days_df = peak_days_df[sorted(peak_days_df.columns)]
 
 # Get tomorrow's date
 from datetime import datetime, timedelta
-tomorrow = datetime.now() + timedelta(days=2)
+tomorrow = datetime.now() + timedelta(days=1)
 tomorrow_date = tomorrow.date()
 tomorrow_str = tomorrow.strftime('%Y-%m-%d')
 
@@ -658,5 +658,5 @@ os.makedirs(predictions_dir, exist_ok=True)
 predictions_file = os.path.join(predictions_dir, 'predictions.csv')
 
 # Append to file (or create if doesn't exist)
-with open(predictions_file, 'w') as f:
+with open(predictions_file, 'a') as f:
     f.write(output_line + '\n')
