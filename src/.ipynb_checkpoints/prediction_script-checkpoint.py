@@ -619,6 +619,9 @@ peak_days_df = peak_days_df.sort_index()  # Sort by region name
 # Ensure columns are sorted by date
 peak_days_df = peak_days_df[sorted(peak_days_df.columns)]
 
+# Convert DatetimeIndex to datetime.date objects (match peak_hour_df format)
+peak_days_df.columns = peak_days_df.columns.date 
+
 
 # ======================================================================
 # ## Generate Tomorrow's Predictions and Save to CSV
